@@ -1,0 +1,19 @@
+version: '3.8'
+
+services:
+
+  jenkins:
+    container_name: jenkins
+    image: jenkins-workflow:2.372-jdk11
+    restart: unless-stopped
+    mem_limit: 1024m
+    privileged: true
+    user: root
+    ports:
+      - 8078:8080
+      - 50000:50000
+    volumes:
+      - /home/opentech/volumes/workflow-jenkins:/var/jenkins_home
+      - /home/opentech/volumes/workflow-jenkins-ssh:/root/.ssh/
+      - /var/run/docker.sock:/var/run/docker.sock
+      - /usr/local/bin/docker:/usr/local/bin/docker
